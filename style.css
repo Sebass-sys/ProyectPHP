@@ -1,0 +1,315 @@
+/* ==========================================================
+   Taller PHP · estilos compartidos por todas las aplicaciones
+   ========================================================== */
+
+:root {
+    --bg: #f4f6fb;
+    --card: #ffffff;
+    --ink: #1b2233;
+    --muted: #5b6579;
+    --line: #dde2ee;
+    --accent: #3b5bdb;
+    --accent-dark: #2c46b0;
+    --accent-soft: #e8edff;
+    --ok: #1f7a46;
+    --ok-bg: #e7f6ee;
+    --warn: #8a5a00;
+    --warn-bg: #fff4d6;
+    --err: #b42318;
+    --err-bg: #fdecea;
+    --radius: 12px;
+    --sombra: 0 1px 2px rgba(20, 30, 60, .06), 0 4px 14px rgba(20, 30, 60, .05);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+}
+
+a { color: var(--accent); }
+
+h1 { font-size: 1.7rem; margin: 0 0 .35rem; line-height: 1.2; }
+h2 { font-size: 1.1rem; margin: 0 0 .5rem; }
+p  { margin: 0 0 .9rem; }
+
+/* ---------- Barra superior ---------- */
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: .7rem 1.25rem;
+    background: var(--card);
+    border-bottom: 1px solid var(--line);
+}
+
+.marca {
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.nav-links {
+    display: flex;
+    gap: .25rem;
+    margin-left: auto;
+    overflow-x: auto;
+}
+
+.nav-links a {
+    padding: .4rem .7rem;
+    border-radius: 8px;
+    color: var(--muted);
+    font-size: .9rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.nav-links a:hover { background: var(--bg); color: var(--ink); }
+.nav-links a.activo { background: var(--accent); color: #fff; }
+
+/* ---------- Contenedor ---------- */
+.contenedor {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 1.75rem 1.25rem 3rem;
+}
+
+.pie {
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: .85rem;
+}
+
+/* ---------- Inicio ---------- */
+.hero { margin-bottom: 1.5rem; }
+.hero p { color: var(--muted); max-width: 60ch; }
+
+.rejilla {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+}
+
+.tarjeta {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--sombra);
+    color: inherit;
+    text-decoration: none;
+    transition: transform .12s ease, border-color .12s ease;
+}
+
+.tarjeta:hover { transform: translateY(-2px); border-color: var(--accent); }
+.tarjeta p { color: var(--muted); font-size: .92rem; flex: 1; }
+
+.tarjeta .num {
+    display: inline-grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: .6rem;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-weight: 700;
+}
+
+.tarjeta .ir { color: var(--accent); font-weight: 600; font-size: .9rem; }
+
+/* ---------- Paneles y formularios ---------- */
+.panel {
+    padding: 1.5rem;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--sombra);
+}
+
+.panel + .panel { margin-top: 1rem; }
+.ayuda { color: var(--muted); font-size: .92rem; }
+
+.formulario { display: grid; gap: .9rem; margin-top: 1rem; }
+.fila { display: grid; gap: .9rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.campo { display: grid; gap: .3rem; }
+
+label { font-weight: 600; font-size: .92rem; }
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: .65rem .8rem;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--ink);
+    font: inherit;
+}
+
+textarea { min-height: 5.5rem; resize: vertical; }
+
+input:focus,
+textarea:focus,
+select:focus,
+.btn:focus-visible,
+.calc-btn:focus-visible {
+    outline: 3px solid var(--accent-soft);
+    border-color: var(--accent);
+}
+
+.btn {
+    justify-self: start;
+    padding: .65rem 1.2rem;
+    border: 0;
+    border-radius: 8px;
+    background: var(--accent);
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn:hover { background: var(--accent-dark); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn-secundario { background: var(--accent-soft); color: var(--accent-dark); }
+.btn-secundario:hover { background: #d6dfff; }
+.btn-peligro { background: var(--err-bg); color: var(--err); }
+.btn-peligro:hover { background: #f9d6d2; }
+
+/* ---------- Mensajes ---------- */
+.alerta {
+    margin-top: 1rem;
+    padding: .8rem 1rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    font-size: .95rem;
+}
+
+.alerta.error { background: var(--err-bg); color: var(--err); border-color: #f4c7c2; }
+.alerta.aviso { background: var(--warn-bg); color: var(--warn); border-color: #f1dc9c; }
+.alerta.ok    { background: var(--ok-bg); color: var(--ok); border-color: #bfe5cf; }
+
+/* ---------- Resultados ---------- */
+.resultado {
+    margin-top: 1.25rem;
+    padding: 1rem 1.25rem;
+    background: var(--accent-soft);
+    border-radius: 10px;
+}
+
+.etiqueta {
+    display: block;
+    color: var(--muted);
+    font-size: .8rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+.grande { display: block; font-size: 2rem; letter-spacing: .06em; word-break: break-all; }
+
+.fichas { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem; }
+
+.ficha {
+    padding: .25rem .65rem;
+    border-radius: 999px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    font-variant-numeric: tabular-nums;
+    font-size: .92rem;
+}
+
+.metricas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: .75rem;
+    margin-top: 1.25rem;
+}
+
+.metrica { padding: .9rem 1rem; background: var(--accent-soft); border-radius: 10px; }
+.metrica strong { display: block; font-size: 1.35rem; word-break: break-word; }
+
+.tabla { width: 100%; margin-top: .75rem; border-collapse: collapse; font-size: .95rem; }
+.tabla th, .tabla td { padding: .45rem .7rem; border-bottom: 1px solid var(--line); text-align: left; }
+.tabla th { color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; }
+.tabla td.num { font-variant-numeric: tabular-nums; }
+
+.mono { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; }
+.bloque-bin { font-size: 1.6rem; word-break: break-all; }
+
+/* ---------- Árbol binario ---------- */
+.arbol-contenedor {
+    margin-top: 1rem;
+    padding: 1rem;
+    overflow-x: auto;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.arbol-svg { max-width: none; }
+.arbol-svg line { stroke: #9aa5c4; stroke-width: 2; }
+.arbol-svg circle { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; }
+.arbol-svg text {
+    fill: var(--ink);
+    font-size: 15px;
+    font-weight: 700;
+    text-anchor: middle;
+    dominant-baseline: central;
+}
+
+/* ---------- Calculadora ---------- */
+.calc-botones { display: flex; flex-wrap: wrap; gap: .5rem; }
+
+.calc-btn {
+    min-width: 3.4rem;
+    padding: .7rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font: inherit;
+    font-size: 1.15rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.calc-btn:hover { background: var(--accent); color: #fff; }
+
+.historial { margin: .75rem 0 0; padding: 0; list-style: none; }
+
+.historial li {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .55rem 0;
+    border-bottom: 1px solid var(--line);
+    font-variant-numeric: tabular-nums;
+}
+
+.historial .hora { color: var(--muted); font-size: .82rem; white-space: nowrap; }
+.encabezado-historial { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.encabezado-historial form { margin: 0; }
+
+@media (max-width: 560px) {
+    .topbar { flex-direction: column; align-items: flex-start; gap: .4rem; }
+    .nav-links { margin-left: 0; width: 100%; }
+    h1 { font-size: 1.4rem; }
+}
