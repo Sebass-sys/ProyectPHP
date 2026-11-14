@@ -1,56 +1,63 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Convierte una frase en su acrónimo.
- *
- * Reglas del enunciado:
- *  - los guiones separan palabras (igual que los espacios);
- *  - cualquier otro signo de puntuación se elimina.
- */
-class Acronimo
-{
-    private string $frase;
+require_once __DIR__ . '/includes/bootstrap.php';
 
-    public function __construct(string $frase)
-    {
-        $this->frase = trim($frase);
+$frase = '';
+$resultado = null;
+$error = null;
 
-        if ($this->frase === '') {
-            throw new InvalidArgumentException('Escribe una frase para convertir.');
-        }
-    }
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $frase = (string) ($_POST['frase'] ?? '');
 
-    /**
-     * Palabras de la frase una vez aplicadas las reglas de limpieza.
-     *
-     * @return string[]
-     */
-    public function palabras(): array
-    {
-        // Los guiones (normal, medio y largo) se vuelven espacios.
-        $texto = str_replace(['-', '–', '—'], ' ', $this->frase);
-
-        // Se conservan solo letras (con sus tildes), números y espacios.
-        $texto = preg_replace('/[^\p{L}\p{M}\p{N}\s]/u', '', $texto) ?? '';
-
-        $palabras = preg_split('/\s+/u', trim($texto), -1, PREG_SPLIT_NO_EMPTY);
-
-        return $palabras === false ? [] : $palabras;
-    }
-
-    public function generar(): string
-    {
-        $acronimo = '';
-
-        foreach ($this->palabras() as $palabra) {
-            $acronimo .= mb_strtoupper(mb_substr($palabra, 0, 1, 'UTF-8'), 'UTF-8');
-        }
-
-        if ($acronimo === '') {
-            throw new InvalidArgumentException('La frase no contiene palabras válidas.');
-        }
-
-        return $acronimo;
+    try {
+        $acronimo = new Acronimo($frase);
+        $resultado = $acronimo->generar();
+    } catch (InvalidArgumentException $excepcion) {
+        $error = $excepcion->getMessage();
     }
 }
+
+$titulo = 'Frase a acrónimo';
+require __DIR__ . '/includes/header.php';
+?>
+<section class="panel">
+    <h1>Frase a acrónimo</h1>
+    <p class="ayuda">
+        Escribe un nombre largo y obtén su sigla. Los guiones separan palabras igual que los espacios;
+        los demás signos de puntuación se ignoran.
+    </p>
+
+    <form method="post" class="formulario">
+        <div class="campo">
+            <label for="frase">Frase</label>
+            <input type="text" id="frase" name="frase" value="<?= e($frase) ?>"
+                   placeholder="Portable Network Graphics" required autofocus>
+        </div>
+        <button type="submit" class="btn">Convertir</button>
+    </form>
+
+    <?php if ($error !== null): ?>
+        <div class="alerta error" role="alert"><?= e($error) ?></div>
+    <?php endif; ?>
+
+    <?php if ($resultado !== null): ?>
+        <div class="resultado">
+            <span class="etiqueta">Acrónimo</span>
+            <strong class="grande"><?= e($resultado) ?></strong>
+        </div>
+    <?php endif; ?>
+</section>
+
+<section class="panel">
+    <h2>Ejemplos</h2>
+    <table class="tabla">
+        <thead><tr><th>Frase</th><th>Acrónimo</th></tr></thead>
+        <tbody>
+            <tr><td>As Soon As Possible</td><td>ASAP</td></tr>
+            <tr><td>Liquid-crystal display</td><td>LCD</td></tr>
+            <tr><td>Thank George It's Friday!</td><td>TGIF</td></tr>
+        </tbody>
+    </table>
+</section>
+<?php require __DIR__ . '/includes/footer.php'; ?>

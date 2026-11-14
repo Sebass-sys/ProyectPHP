@@ -1,120 +1,67 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Operaciones entre dos conjuntos de números enteros:
- * unión, intersección y diferencias A-B y B-A.
- */
-class Conjuntos
-{
-    /** @var int[] */
-    private array $a;
+require_once __DIR__ . '/includes/bootstrap.php';
 
-    /** @var int[] */
-    private array $b;
+$textoA = '';
+$textoB = '';
+$conjuntos = null;
+$error = null;
 
-    /**
-     * @param int[] $a
-     * @param int[] $b
-     */
-    public function __construct(array $a, array $b)
-    {
-        if (count($a) === 0 || count($b) === 0) {
-            throw new InvalidArgumentException('Cada conjunto debe tener al menos un número.');
-        }
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $textoA = (string) ($_POST['conjunto_a'] ?? '');
+    $textoB = (string) ($_POST['conjunto_b'] ?? '');
 
-        $this->a = self::normalizar($a);
-        $this->b = self::normalizar($b);
-    }
-
-    /**
-     * Crea los conjuntos a partir de texto: enteros separados por
-     * espacios, comas o punto y coma.
-     */
-    public static function desdeTexto(string $textoA, string $textoB): self
-    {
-        return new self(
-            self::parsear($textoA, 'A'),
-            self::parsear($textoB, 'B')
-        );
-    }
-
-    /** @return int[] */
-    public function conjuntoA(): array
-    {
-        return $this->a;
-    }
-
-    /** @return int[] */
-    public function conjuntoB(): array
-    {
-        return $this->b;
-    }
-
-    /** @return int[] */
-    public function union(): array
-    {
-        return self::normalizar(array_merge($this->a, $this->b));
-    }
-
-    /** @return int[] */
-    public function interseccion(): array
-    {
-        return self::normalizar(array_intersect($this->a, $this->b));
-    }
-
-    /** A − B: elementos de A que no están en B. @return int[] */
-    public function diferenciaAB(): array
-    {
-        return self::normalizar(array_diff($this->a, $this->b));
-    }
-
-    /** B − A: elementos de B que no están en A. @return int[] */
-    public function diferenciaBA(): array
-    {
-        return self::normalizar(array_diff($this->b, $this->a));
-    }
-
-    /**
-     * Texto con notación de conjunto: {1, 2, 3}  (o ∅ si está vacío).
-     *
-     * @param int[] $conjunto
-     */
-    public static function formatear(array $conjunto): string
-    {
-        return count($conjunto) === 0 ? '∅' : '{' . implode(', ', $conjunto) . '}';
-    }
-
-    /**
-     * @return int[]
-     */
-    private static function parsear(string $texto, string $nombre): array
-    {
-        $trozos = preg_split('/[\s,;]+/', trim($texto), -1, PREG_SPLIT_NO_EMPTY);
-        $numeros = [];
-
-        foreach ($trozos === false ? [] : $trozos as $trozo) {
-            if (!preg_match('/^[+-]?\d{1,18}$/', $trozo)) {
-                throw new InvalidArgumentException("En el conjunto {$nombre}, «{$trozo}» no es un número entero.");
-            }
-
-            $numeros[] = (int) $trozo;
-        }
-
-        return $numeros;
-    }
-
-    /**
-     * Quita repetidos y ordena de menor a mayor.
-     *
-     * @param int[] $valores
-     * @return int[]
-     */
-    private static function normalizar(array $valores): array
-    {
-        $unicos = array_values(array_unique($valores));
-        sort($unicos);
-
-        return $unicos;
+    try {
+        $conjuntos = Conjuntos::desdeTexto($textoA, $textoB);
+    } catch (InvalidArgumentException $excepcion) {
+        $error = $excepcion->getMessage();
     }
 }
+
+$titulo = 'Operaciones con conjuntos';
+require __DIR__ . '/includes/header.php';
+?>
+<section class="panel">
+    <h1>Operaciones con conjuntos</h1>
+    <p class="ayuda">
+        Ingresa los elementos de cada conjunto (números enteros) separados por espacios o comas.
+        Los repetidos se ignoran, porque un conjunto no tiene elementos duplicados.
+    </p>
+
+    <form method="post" class="formulario">
+        <div class="fila">
+            <div class="campo">
+                <label for="conjunto_a">Conjunto A</label>
+                <input type="text" id="conjunto_a" name="conjunto_a" value="<?= e($textoA) ?>"
+                       placeholder="1, 2, 3, 4, 5" required autofocus>
+            </div>
+            <div class="campo">
+                <label for="conjunto_b">Conjunto B</label>
+                <input type="text" id="conjunto_b" name="conjunto_b" value="<?= e($textoB) ?>"
+                       placeholder="4, 5, 6, 7" required>
+            </div>
+        </div>
+        <button type="submit" class="btn">Calcular</button>
+    </form>
+
+    <?php if ($error !== null): ?>
+        <div class="alerta error" role="alert"><?= e($error) ?></div>
+    <?php endif; ?>
+
+    <?php if ($conjuntos !== null): ?>
+        <table class="tabla">
+            <thead><tr><th>Operación</th><th>Resultado</th></tr></thead>
+            <tbody>
+                <tr><td>A</td><td class="num"><?= e(Conjuntos::formatear($conjuntos->conjuntoA())) ?></td></tr>
+                <tr><td>B</td><td class="num"><?= e(Conjuntos::formatear($conjuntos->conjuntoB())) ?></td></tr>
+                <tr><td><strong>Unión</strong> (A ∪ B)</td><td class="num"><?= e(Conjuntos::formatear($conjuntos->union())) ?></td></tr>
+                <tr><td><strong>Intersección</strong> (A ∩ B)</td><td class="num"><?= e(Conjuntos::formatear($conjuntos->interseccion())) ?></td></tr>
+                <tr><td><strong>Diferencia</strong> (A − B)</td><td class="num"><?= e(Conjuntos::formatear($conjuntos->diferenciaAB())) ?></td></tr>
+                <tr><td><strong>Diferencia</strong> (B − A)</td><td class="num"><?= e(Conjuntos::formatear($conjuntos->diferenciaBA())) ?></td></tr>
+            </tbody>
+        </table>
+        <p class="ayuda" style="margin-top:.75rem;">El símbolo ∅ indica el conjunto vacío.</p>
+    <?php endif; ?>
+</section>
+<?php require __DIR__ . '/includes/footer.php'; ?>
