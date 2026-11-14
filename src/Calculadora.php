@@ -31,25 +31,27 @@ class Calculadora
         return (float) $limpio;
     }
 
-    public function calcular(float $a, string $operacion, float $b): float
-    {
-        $resultado = match ($operacion) {
-            'suma'           => $a + $b,
-            'resta'          => $a - $b,
-            'multiplicacion' => $a * $b,
-            'division'       => $b === 0.0
-                ? throw new InvalidArgumentException('No se puede dividir entre cero.')
-                : $a / $b,
-            'porcentaje'     => $a * $b / 100,
-            default          => throw new InvalidArgumentException('Operación no válida.'),
-        };
-
-        if (!is_finite($resultado)) {
-            throw new InvalidArgumentException('El resultado es demasiado grande.');
-        }
-
-        return $resultado;
+public function calcular(float $a, string $operacion, float $b): float
+{
+    if ($operacion === 'division' && $b === 0.0) {
+        throw new InvalidArgumentException('No se puede dividir entre cero.');
     }
+
+    $resultado = match ($operacion) {
+        'suma'           => $a + $b,
+        'resta'          => $a - $b,
+        'multiplicacion' => $a * $b,
+        'division'       => $a / $b,
+        'porcentaje'     => $a * $b / 100,
+        default          => throw new InvalidArgumentException('Operación no válida.'),
+    };
+
+    if (!is_finite($resultado)) {
+        throw new InvalidArgumentException('El resultado es demasiado grande.');
+    }
+
+    return $resultado;
+}
 
     /**
      * Texto de la operación, por ejemplo "12 + 3" o "15 % de 200".
