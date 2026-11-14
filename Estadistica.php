@@ -30,7 +30,8 @@ require __DIR__ . '/includes/header.php';
     <form method="post" class="formulario">
         <div class="campo">
             <label for="numeros">Números</label>
-            <textarea id="numeros" name="numeros" placeholder="4, 8.5, 15, 8.5, 23, 42" required autofocus><?= e($texto) ?></textarea>
+            <textarea id="numeros" name="numeros" placeholder="4, 8.5, 15, 8.5, 23, 42" required
+                autofocus><?= e($texto) ?></textarea>
         </div>
         <button type="submit" class="btn">Calcular</button>
     </form>
@@ -60,7 +61,7 @@ require __DIR__ . '/includes/header.php';
                     <?php if (count($modas) === 0): ?>
                         Sin moda
                     <?php else: ?>
-                        <?= e(implode(', ', array_map(static fn (float $m): string => Formato::numero($m), $modas))) ?>
+                        <?= e(implode(', ', array_map(static fn(float $m): string => Formato::numero($m), $modas))) ?>
                     <?php endif; ?>
                 </strong>
             </div>
@@ -69,7 +70,8 @@ require __DIR__ . '/includes/header.php';
         <?php if (count($modas) === 0): ?>
             <p class="ayuda" style="margin-top:.75rem;">Ningún valor se repite, por eso la serie no tiene moda.</p>
         <?php elseif (count($modas) > 1): ?>
-            <p class="ayuda" style="margin-top:.75rem;">Hay varios valores con la misma frecuencia máxima (serie multimodal).</p>
+            <p class="ayuda" style="margin-top:.75rem;">Hay varios valores con la misma frecuencia máxima (serie multimodal).
+            </p>
         <?php endif; ?>
 
         <div class="resultado">

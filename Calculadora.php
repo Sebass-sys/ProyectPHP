@@ -57,18 +57,20 @@ require __DIR__ . '/includes/header.php';
         <div class="fila">
             <div class="campo">
                 <label for="a">Número A</label>
-                <input type="text" id="a" name="a" inputmode="decimal" value="<?= e($valorA) ?>" placeholder="12.5" required autofocus>
+                <input type="text" id="a" name="a" inputmode="decimal" value="<?= e($valorA) ?>" placeholder="12.5"
+                    required autofocus>
             </div>
             <div class="campo">
                 <label for="b">Número B</label>
-                <input type="text" id="b" name="b" inputmode="decimal" value="<?= e($valorB) ?>" placeholder="4" required>
+                <input type="text" id="b" name="b" inputmode="decimal" value="<?= e($valorB) ?>" placeholder="4"
+                    required>
             </div>
         </div>
 
         <div class="calc-botones">
             <?php foreach (Calculadora::OPERACIONES as $clave => $datos): ?>
                 <button type="submit" class="calc-btn" name="operacion" value="<?= e($clave) ?>"
-                        title="<?= e($datos['nombre']) ?>" aria-label="<?= e($datos['nombre']) ?>">
+                    title="<?= e($datos['nombre']) ?>" aria-label="<?= e($datos['nombre']) ?>">
                     <?= e($clave === 'porcentaje' ? '%' : $datos['simbolo']) ?>
                 </button>
             <?php endforeach; ?>
@@ -92,7 +94,8 @@ require __DIR__ . '/includes/header.php';
         <h2>Historial</h2>
         <form method="post">
             <input type="hidden" name="accion" value="borrar">
-            <button type="submit" class="btn btn-peligro"<?= $historial->estaVacio() ? ' disabled' : '' ?>>Borrar historial</button>
+            <button type="submit" class="btn btn-peligro" <?= $historial->estaVacio() ? ' disabled' : '' ?>>Borrar
+                historial</button>
         </form>
     </div>
 

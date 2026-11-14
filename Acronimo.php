@@ -31,8 +31,8 @@ require __DIR__ . '/includes/header.php';
     <form method="post" class="formulario">
         <div class="campo">
             <label for="frase">Frase</label>
-            <input type="text" id="frase" name="frase" value="<?= e($frase) ?>"
-                   placeholder="Portable Network Graphics" required autofocus>
+            <input type="text" id="frase" name="frase" value="<?= e($frase) ?>" placeholder="Portable Network Graphics"
+                required autofocus>
         </div>
         <button type="submit" class="btn">Convertir</button>
     </form>
@@ -52,11 +52,25 @@ require __DIR__ . '/includes/header.php';
 <section class="panel">
     <h2>Ejemplos</h2>
     <table class="tabla">
-        <thead><tr><th>Frase</th><th>Acrónimo</th></tr></thead>
+        <thead>
+            <tr>
+                <th>Frase</th>
+                <th>Acrónimo</th>
+            </tr>
+        </thead>
         <tbody>
-            <tr><td>As Soon As Possible</td><td>ASAP</td></tr>
-            <tr><td>Liquid-crystal display</td><td>LCD</td></tr>
-            <tr><td>Thank George It's Friday!</td><td>TGIF</td></tr>
+            <tr>
+                <td>As Soon As Possible</td>
+                <td>ASAP</td>
+            </tr>
+            <tr>
+                <td>Liquid-crystal display</td>
+                <td>LCD</td>
+            </tr>
+            <tr>
+                <td>Thank George It's Friday!</td>
+                <td>TGIF</td>
+            </tr>
         </tbody>
     </table>
 </section>
