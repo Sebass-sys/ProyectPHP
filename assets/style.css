@@ -313,3 +313,75 @@ select:focus,
     .nav-links { margin-left: 0; width: 100%; }
     h1 { font-size: 1.4rem; }
 }
+
+/* ---------- Entrada por etiquetas (chips) ---------- */
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .4rem;
+    min-height: 2.9rem;
+    padding: .4rem .6rem;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    cursor: text;
+}
+
+.chips:focus-within {
+    outline: 3px solid var(--accent-soft);
+    border-color: var(--accent);
+}
+
+.chips-lista { display: contents; }
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .25rem;
+    padding: .2rem .35rem .2rem .7rem;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-weight: 700;
+    transition: background .2s ease;
+}
+
+.chip.repetido { background: var(--err-bg); color: var(--err); }
+
+.chip-quitar {
+    display: inline-grid;
+    place-items: center;
+    width: 1.35rem;
+    height: 1.35rem;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: inherit;
+    font-size: 1.05rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.chip-quitar:hover { background: rgba(0, 0, 0, .1); }
+
+.chips .chips-input {
+    flex: 1;
+    min-width: 9rem;
+    padding: .35rem .2rem;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+}
+
+.chips .chips-input:focus { outline: 0; }
+
+.chips-contador { min-height: 1.1rem; color: var(--muted); font-size: .82rem; }
+
+.acciones { display: flex; flex-wrap: wrap; gap: .6rem; }
+.acciones [hidden] { display: none; }
+
+/* ---------- Botón para volver al menú ---------- */
+.volver { margin-top: 1.25rem; }
+.volver .btn { display: inline-block; }
