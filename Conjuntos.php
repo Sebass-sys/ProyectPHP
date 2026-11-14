@@ -34,12 +34,12 @@ require __DIR__ . '/includes/header.php';
             <div class="campo">
                 <label for="conjunto_a">Conjunto A</label>
                 <input type="text" id="conjunto_a" name="conjunto_a" value="<?= e($textoA) ?>"
-                       placeholder="1, 2, 3, 4, 5" required autofocus>
+                    placeholder="1, 2, 3, 4, 5" required autofocus>
             </div>
             <div class="campo">
                 <label for="conjunto_b">Conjunto B</label>
-                <input type="text" id="conjunto_b" name="conjunto_b" value="<?= e($textoB) ?>"
-                       placeholder="4, 5, 6, 7" required>
+                <input type="text" id="conjunto_b" name="conjunto_b" value="<?= e($textoB) ?>" placeholder="4, 5, 6, 7"
+                    required>
             </div>
         </div>
         <button type="submit" class="btn">Calcular</button>
@@ -51,14 +51,37 @@ require __DIR__ . '/includes/header.php';
 
     <?php if ($conjuntos !== null): ?>
         <table class="tabla">
-            <thead><tr><th>Operación</th><th>Resultado</th></tr></thead>
+            <thead>
+                <tr>
+                    <th>Operación</th>
+                    <th>Resultado</th>
+                </tr>
+            </thead>
             <tbody>
-                <tr><td>A</td><td class="num"><?= e(Conjuntos::formatear($conjuntos->conjuntoA())) ?></td></tr>
-                <tr><td>B</td><td class="num"><?= e(Conjuntos::formatear($conjuntos->conjuntoB())) ?></td></tr>
-                <tr><td><strong>Unión</strong> (A ∪ B)</td><td class="num"><?= e(Conjuntos::formatear($conjuntos->union())) ?></td></tr>
-                <tr><td><strong>Intersección</strong> (A ∩ B)</td><td class="num"><?= e(Conjuntos::formatear($conjuntos->interseccion())) ?></td></tr>
-                <tr><td><strong>Diferencia</strong> (A − B)</td><td class="num"><?= e(Conjuntos::formatear($conjuntos->diferenciaAB())) ?></td></tr>
-                <tr><td><strong>Diferencia</strong> (B − A)</td><td class="num"><?= e(Conjuntos::formatear($conjuntos->diferenciaBA())) ?></td></tr>
+                <tr>
+                    <td>A</td>
+                    <td class="num"><?= e(Conjuntos::formatear($conjuntos->conjuntoA())) ?></td>
+                </tr>
+                <tr>
+                    <td>B</td>
+                    <td class="num"><?= e(Conjuntos::formatear($conjuntos->conjuntoB())) ?></td>
+                </tr>
+                <tr>
+                    <td><strong>Unión</strong> (A ∪ B)</td>
+                    <td class="num"><?= e(Conjuntos::formatear($conjuntos->union())) ?></td>
+                </tr>
+                <tr>
+                    <td><strong>Intersección</strong> (A ∩ B)</td>
+                    <td class="num"><?= e(Conjuntos::formatear($conjuntos->interseccion())) ?></td>
+                </tr>
+                <tr>
+                    <td><strong>Diferencia</strong> (A − B)</td>
+                    <td class="num"><?= e(Conjuntos::formatear($conjuntos->diferenciaAB())) ?></td>
+                </tr>
+                <tr>
+                    <td><strong>Diferencia</strong> (B − A)</td>
+                    <td class="num"><?= e(Conjuntos::formatear($conjuntos->diferenciaBA())) ?></td>
+                </tr>
             </tbody>
         </table>
         <p class="ayuda" style="margin-top:.75rem;">El símbolo ∅ indica el conjunto vacío.</p>

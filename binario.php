@@ -27,8 +27,8 @@ require __DIR__ . '/includes/header.php';
     <form method="post" class="formulario">
         <div class="campo">
             <label for="numero">Número entero</label>
-            <input type="text" id="numero" name="numero" inputmode="numeric"
-                   value="<?= e($texto) ?>" placeholder="25" required autofocus>
+            <input type="text" id="numero" name="numero" inputmode="numeric" value="<?= e($texto) ?>" placeholder="25"
+                required autofocus>
         </div>
         <button type="submit" class="btn">Convertir</button>
     </form>
@@ -50,7 +50,13 @@ require __DIR__ . '/includes/header.php';
             <h2 style="margin-top:1.25rem;">Divisiones sucesivas entre 2</h2>
             <p class="ayuda">Los residuos se leen de abajo hacia arriba.</p>
             <table class="tabla">
-                <thead><tr><th>División</th><th>Cociente</th><th>Residuo</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>División</th>
+                        <th>Cociente</th>
+                        <th>Residuo</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <?php foreach ($pasos as $paso): ?>
                         <tr>

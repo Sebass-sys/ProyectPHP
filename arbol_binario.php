@@ -57,7 +57,8 @@ require __DIR__ . '/includes/header.php';
     <form method="post" class="formulario">
         <div class="campo">
             <label for="preorden">Preorden</label>
-            <input type="text" id="preorden" name="preorden" value="<?= e($preorden) ?>" placeholder="A → B → D → E → C">
+            <input type="text" id="preorden" name="preorden" value="<?= e($preorden) ?>"
+                placeholder="A → B → D → E → C">
         </div>
         <div class="campo">
             <label for="inorden">Inorden</label>
@@ -65,7 +66,8 @@ require __DIR__ . '/includes/header.php';
         </div>
         <div class="campo">
             <label for="postorden">Postorden</label>
-            <input type="text" id="postorden" name="postorden" value="<?= e($postorden) ?>" placeholder="D → E → B → C → A">
+            <input type="text" id="postorden" name="postorden" value="<?= e($postorden) ?>"
+                placeholder="D → E → B → C → A">
         </div>
         <button type="submit" class="btn">Construir árbol</button>
     </form>
@@ -89,11 +91,25 @@ require __DIR__ . '/includes/header.php';
         </div>
 
         <table class="tabla">
-            <thead><tr><th>Recorrido</th><th>Nodos</th></tr></thead>
+            <thead>
+                <tr>
+                    <th>Recorrido</th>
+                    <th>Nodos</th>
+                </tr>
+            </thead>
             <tbody>
-                <tr><td>Preorden</td><td class="num"><?= e(implode(' → ', $arbol->preorden())) ?></td></tr>
-                <tr><td>Inorden</td><td class="num"><?= e(implode(' → ', $arbol->inorden())) ?></td></tr>
-                <tr><td>Postorden</td><td class="num"><?= e(implode(' → ', $arbol->postorden())) ?></td></tr>
+                <tr>
+                    <td>Preorden</td>
+                    <td class="num"><?= e(implode(' → ', $arbol->preorden())) ?></td>
+                </tr>
+                <tr>
+                    <td>Inorden</td>
+                    <td class="num"><?= e(implode(' → ', $arbol->inorden())) ?></td>
+                </tr>
+                <tr>
+                    <td>Postorden</td>
+                    <td class="num"><?= e(implode(' → ', $arbol->postorden())) ?></td>
+                </tr>
             </tbody>
         </table>
     <?php endif; ?>

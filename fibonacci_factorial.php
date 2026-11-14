@@ -23,13 +23,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($operacion === 'fibonacci') {
             $resultado = [
-                'tipo'  => 'fibonacci',
+                'tipo' => 'fibonacci',
                 'serie' => $secuencias->fibonacci($n),
             ];
         } elseif ($operacion === 'factorial') {
             $resultado = [
-                'tipo'       => 'factorial',
-                'serie'      => $secuencias->serieFactorial($n),
+                'tipo' => 'factorial',
+                'serie' => $secuencias->serieFactorial($n),
                 'desarrollo' => $secuencias->desarrolloFactorial($n),
             ];
         } else {
@@ -56,14 +56,15 @@ require __DIR__ . '/includes/header.php';
         <div class="fila">
             <div class="campo">
                 <label for="numero">Número (n)</label>
-                <input type="text" id="numero" name="numero" inputmode="numeric"
-                       value="<?= e($numero) ?>" placeholder="10" required autofocus>
+                <input type="text" id="numero" name="numero" inputmode="numeric" value="<?= e($numero) ?>"
+                    placeholder="10" required autofocus>
             </div>
             <div class="campo">
                 <label for="operacion">Operación</label>
                 <select id="operacion" name="operacion">
-                    <option value="fibonacci"<?= $operacion === 'fibonacci' ? ' selected' : '' ?>>Sucesión de Fibonacci</option>
-                    <option value="factorial"<?= $operacion === 'factorial' ? ' selected' : '' ?>>Factorial</option>
+                    <option value="fibonacci" <?= $operacion === 'fibonacci' ? ' selected' : '' ?>>Sucesión de Fibonacci
+                    </option>
+                    <option value="factorial" <?= $operacion === 'factorial' ? ' selected' : '' ?>>Factorial</option>
                 </select>
             </div>
         </div>
@@ -88,7 +89,8 @@ require __DIR__ . '/includes/header.php';
     <?php if ($resultado !== null && $resultado['tipo'] === 'factorial'): ?>
         <div class="resultado">
             <span class="etiqueta">Factorial</span>
-            <strong class="mono" style="font-size:1.25rem; word-break:break-word;"><?= e($resultado['desarrollo']) ?></strong>
+            <strong class="mono"
+                style="font-size:1.25rem; word-break:break-word;"><?= e($resultado['desarrollo']) ?></strong>
             <span class="etiqueta" style="margin-top:1rem;">Serie de factoriales</span>
             <div class="fichas">
                 <?php foreach ($resultado['serie'] as $k => $valor): ?>
