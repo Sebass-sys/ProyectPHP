@@ -1,9 +1,7 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Historial de operaciones de la calculadora, guardado en la sesión del usuario.
- */
+
 class HistorialCalculadora
 {
     private const CLAVE = 'calculadora_historial';

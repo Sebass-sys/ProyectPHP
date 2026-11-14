@@ -1,10 +1,7 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Estadística básica sobre una serie de números reales:
- * promedio (media aritmética), mediana y moda.
- */
+
 class Estadistica
 {
     /** @var float[] */

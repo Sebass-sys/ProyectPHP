@@ -1,20 +1,7 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Árbol binario reconstruido a partir de sus recorridos.
- *
- * Combinaciones admitidas (se necesitan al menos dos recorridos):
- *  - preorden + inorden
- *  - postorden + inorden
- *  - preorden + postorden
- *
- * Si el usuario entrega los tres, se usa preorden + inorden.
- *
- * Nota: preorden + postorden no siempre define un único árbol. Cuando un
- * nodo tiene un solo hijo es imposible saber si es el izquierdo o el derecho;
- * en ese caso se asume el izquierdo y se avisa con esAmbiguo().
- */
+
 class ArbolBinario
 {
     public const MAX_NODOS = 60;

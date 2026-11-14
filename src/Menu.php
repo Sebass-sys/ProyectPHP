@@ -1,10 +1,7 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Lista de aplicaciones del taller.
- * Es la única fuente de verdad: la usan la página principal y la barra de navegación.
- */
+
 class Menu
 {
     /**

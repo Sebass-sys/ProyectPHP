@@ -1,11 +1,7 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Calculadora con las operaciones básicas.
- *
- * El porcentaje se entiende como "A % de B": 15 % de 200 = 30.
- */
+
 class Calculadora
 {
     public const OPERACIONES = [

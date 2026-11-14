@@ -1,10 +1,7 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Operaciones entre dos conjuntos de números enteros:
- * unión, intersección y diferencias A-B y B-A.
- */
+
 class Conjuntos
 {
     /** @var int[] */

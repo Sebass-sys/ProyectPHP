@@ -1,9 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Convierte un número entero a binario con el método de divisiones sucesivas entre 2.
- */
 class ConversorBinario
 {
     private int $numero;

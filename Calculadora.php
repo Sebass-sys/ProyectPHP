@@ -81,7 +81,7 @@ require __DIR__ . '/includes/header.php';
                 <span class="etiqueta">Resultado</span>
                 <strong class="grande"><?= e($mensaje['texto']) ?></strong>
             </div>
-        <?php else: ?>
+        <?php else: ?> 
             <div class="alerta <?= e($mensaje['tipo']) ?>" role="alert"><?= e($mensaje['texto']) ?></div>
         <?php endif; ?>
     <?php endif; ?>

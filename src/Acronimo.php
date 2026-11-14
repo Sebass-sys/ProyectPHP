@@ -1,13 +1,7 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Convierte una frase en su acrónimo.
- *
- * Reglas del enunciado:
- *  - los guiones separan palabras (igual que los espacios);
- *  - cualquier otro signo de puntuación se elimina.
- */
+
 class Acronimo
 {
     private string $frase;

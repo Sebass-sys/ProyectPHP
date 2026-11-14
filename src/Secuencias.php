@@ -1,12 +1,7 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Sucesión de Fibonacci y factorial.
- *
- * Se trabaja con enteros nativos de PHP (64 bits), por eso cada operación
- * tiene un tope: pasado ese valor el resultado ya no cabe en un entero.
- */
+
 class Secuencias
 {
     public const MAX_FIBONACCI = 90; // F(90) cabe en 64 bits

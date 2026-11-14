@@ -1,12 +1,7 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Dibuja un ArbolBinario como imagen SVG.
- *
- * La posición horizontal de cada nodo es su lugar en el recorrido inorden
- * y la vertical es su nivel, así el dibujo nunca se cruza.
- */
+
 class ArbolSvg
 {
     public function dibujar(ArbolBinario $arbol): string
